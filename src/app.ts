@@ -42,7 +42,7 @@ app.post("/webhook", async (req: Request<{}, {}, WebhookRequestBody>, res: Respo
       // Send a reply message
       await axios({
         method: "POST",
-        url: `https://graph.facebook.com/v20.0/${business_phone_number_id}/messages`,
+        url: `https://graph.facebook.com/v20.0/${WHATSAPP_PHONE_NUMBER_ID}/messages`,
         headers: {
           Authorization: `Bearer ${GRAPH_API_TOKEN}`,
         },
@@ -59,7 +59,7 @@ app.post("/webhook", async (req: Request<{}, {}, WebhookRequestBody>, res: Respo
       // Mark message as read
       await axios({
         method: "POST",
-        url: `https://graph.facebook.com/v20.0/${business_phone_number_id}/messages`,
+        url: `https://graph.facebook.com/v20.0/${WHATSAPP_PHONE_NUMBER_ID}/messages`,
         headers: {
           Authorization: `Bearer ${GRAPH_API_TOKEN}`,
         },
