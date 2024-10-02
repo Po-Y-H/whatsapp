@@ -26,3 +26,6 @@ Thumbs.db
 #.env
 package-lock.json
 yarn.lock
+
+.env
+mydatabase.db
