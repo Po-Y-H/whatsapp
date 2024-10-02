@@ -4,20 +4,9 @@ services:
     build: .
     ports:
       - "3000:3000"
-    depends_on:
-      - db
-    environment:
-      DATABASE_URL: postgres://user:password@db:5432/segm
-      NODE_ENV: development
-
-  db:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: whatsapp_db
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
+      - ./db/mydatabase.db:/usr/src/app/mydatabase.db
+    environment:
+      NODE_ENV: development
+    env_file:
+      - .env

@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { OutgoingMessage } from '../models/message';
+import {insertOutgoingMessage} from '../../db/messageDB'
 
 const WHATSAPP_API_URL = 'https://graph.facebook.com/v20.0';
 
 export const sendWhatsAppMessage = async (to: string, body: string): Promise<any> => {
   const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
-  const accessToken = process.env.WHATSAPP_ACCESS_TOKEN;
+  const accessToken = process.env.GRAPH_API_TOKEN;
 
   if (!phoneNumberId || !accessToken) {
     throw new Error('WhatsApp credentials are not properly configured');
@@ -29,7 +30,7 @@ export const sendWhatsAppMessage = async (to: string, body: string): Promise<any
         },
       }
     );
-
+    insertOutgoingMessage(message);
     return response.data;
   } catch (error) {
     console.error('Error sending WhatsApp message:', error);

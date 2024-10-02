@@ -4,7 +4,7 @@ import * as webhookController from '../controllers/webhook.controller';
 
 const router = express.Router();
 
-router.post('/webhook', webhookController.handleIncomingMessage);
+router.post('/webhook', webhookController.processWebhook);
 router.get('/webhook', webhookController.verifyWebhook);
 router.post('/sendMsg', messageController.sendMessage);
 
