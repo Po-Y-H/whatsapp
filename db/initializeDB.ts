@@ -32,33 +32,4 @@ const initializeDB = async (): Promise<void> => {
   }
 };
 
-// // Function to insert a new message into the database
-// const insertMessage = async (message: { phoneNumberId: string; from: string; to: string; body: string }): Promise<void> => {
-//   const db = await open({
-//     filename: './mydatabase.db',
-//     driver: sqlite3.Database,
-//   });
-
-//   await db.run(`
-//     INSERT INTO Message (phoneNumberId, "from", "to", body)
-//     VALUES (?, ?, ?, ?)
-//   `, [
-//     message.phoneNumberId,
-//     message.from,
-//     message.to,
-//     message.body,
-//   ]);
-
-//   await db.close();
-// };
-
-// const getAllMessages = async (): Promise<any[]> => {
-//     const db = await open({
-//     filename: './mydatabase.db',
-//     driver: sqlite3.Database,
-//   });
-//   const messages = await db.all(`SELECT * FROM Message`);
-//   return messages;
-// };
-
 export { initializeDB };

@@ -23,27 +23,8 @@ export const processWebhook = (req: Request, res: Response) => {
   }
 };
 
-
-
-// export const handleIncomingMessage = (req: Request, res: Response) => {
-//   console.log("handle herrrrrrrre");
-//   const { body } = req;
-//   console.log("Incoming webhook:", JSON.stringify(req.body, null, 2));
-
-//   if (webhookService.isValidWhatsAppMessage(body)) {
-//     const message = webhookService.extractMessage(body);
-//     console.log('Received message:', message);
-//     // TODO: Add your business logic here
-//     insertMessage(message);
-//     res.sendStatus(200);
-//   } else {
-//     res.sendStatus(404);
-//   }
-// };
-
 export const verifyWebhook = (req: Request, res: Response) => {
-  // const WEBHOOK_VERIFY_TOKEN = "asjdoij3joi235opfwj9";
-  const verifyToken = "asjdoij3joi235opfwj9"
+  const verifyToken = process.env.VERIFY_TOKEN;
 
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];

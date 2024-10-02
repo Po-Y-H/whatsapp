@@ -151,7 +151,6 @@ app.get("/webhook", (req: Request, res: Response) => {
 app.listen(PORT || 3000, async () => {
   try {
     await initializeDB(); // Initialize the database
-    console.log("Database initialized successfully.");
     console.log(`Server is listening on port: ${PORT || 3000}`);
   } catch (err) {
     console.error("Database initialization failed:", err);
