@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Messages</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: #fff;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+    td {
+      background-color: #f9f9f9;
+    }
+    tr:nth-child(even) td {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>All Received Messages</h1>
+  <table id="receivedMessages">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>From</th>
+        <th>Body</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Received messages will be inserted here -->
+    </tbody>
+  </table>
+
+  <h1>All Sent Messages</h1>
+  <table id="sentMessages">
+    <thead>
+      <tr>
+        <th>To</th>
+        <th>Body</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Sent messages will be inserted here -->
+    </tbody>
+  </table>
+
+  <script>
+    async function fetchMessages() {
+      const response = await fetch('/messagesData');
+      const data = await response.json();
+
+      const receivedMessagesElement = document.getElementById('receivedMessages').getElementsByTagName('tbody')[0];
+      const sentMessagesElement = document.getElementById('sentMessages').getElementsByTagName('tbody')[0];
+
+      // Display received messages in table rows
+      data.receivedMessages.forEach(message => {
+        const row = receivedMessagesElement.insertRow();
+        row.innerHTML = `
+          <td>${message.id}</td>
+          <td>${message.from}</td>
+          <td>${message.body}</td>
+          <td>${message.created_at}</td>
+        `;
+      });
+
+      // Display sent messages in table rows
+      data.sentMessages.forEach(message => {
+        const row = sentMessagesElement.insertRow();
+        row.innerHTML = `
+          <td>${message.to}</td>
+          <td>${message.body}</td>
+          <td>${message.created_at}</td>
+        `;
+      });
+    }
+
+    fetchMessages();
+  </script>
+</body>
+</html>
